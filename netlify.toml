@@ -1,6 +1,6 @@
 # Netlify configuration for KPON
 [build]
-  command = "bun run build"
+  command = "bun install && bun run build"
   functions = "netlify/functions"
   publish = "dist"
 
