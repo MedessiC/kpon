@@ -1,14 +1,48 @@
+# KPON Marketplace - SEO Robots Configuration
+# Secure Design Delivery Marketplace
+# Powered by MIDEESSI
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /.env
+Disallow: /node_modules
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Crawl delay (milliseconds)
+Crawl-delay: 2
+
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers (allow)
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+# Sitemap location
+Sitemap: https://kpon.com/sitemap.xml
+
+# Block malicious bots
+User-agent: MJ12bot
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /
