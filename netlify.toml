@@ -1,0 +1,46 @@
+# Netlify configuration for KPON
+[build]
+  command = "bun run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+# Environment variables (set these in Netlify Dashboard)
+# VITE_SUPABASE_URL
+# VITE_SUPABASE_ANON_KEY
+# VITE_CLOUDINARY_CLOUD_NAME
+# VITE_CLOUDINARY_UPLOAD_PRESET
+# VITE_SENTRY_DSN
+
+[[redirects]]
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/:splat"
+
+# SPA routing - all 404s go to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Cache settings
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, immutable, max-age=31536000"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+[context.deploy-preview]
+  environment = { NODE_ENV = "development" }
+
+[context.branch-deploy]
+  environment = { NODE_ENV = "development" }
